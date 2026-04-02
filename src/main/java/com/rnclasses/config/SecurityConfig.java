@@ -102,16 +102,16 @@ public class SecurityConfig {
                 .requestMatchers("/api/trainer/**").hasRole("TRAINER")
                 
                 // Student endpoints - require STUDENT role
-                .requestMatchers("/api/student/**").hasRole("STUDENT")
+               // .requestMatchers("/api/student/**").hasRole("STUDENT")
                 
                 // Authenticated endpoints
-                .requestMatchers("/api/enroll/**").authenticated()
-                .requestMatchers("/api/user/**").authenticated()
-                .requestMatchers("/api/profile/**").authenticated()
-                .requestMatchers("/api/my-courses/**").authenticated()
-                .requestMatchers("/api/certificate/**").authenticated()
-                .requestMatchers("/api/video/**").authenticated()
-                .requestMatchers("/api/payment/**").authenticated()
+               // .requestMatchers("/api/enroll/**").authenticated()
+                //.requestMatchers("/api/user/**").authenticated()
+                //.requestMatchers("/api/profile/**").authenticated()
+                //.requestMatchers("/api/my-courses/**").authenticated()
+                //.requestMatchers("/api/certificate/**").authenticated()
+               // .requestMatchers("/api/video/**").authenticated()
+               // .requestMatchers("/api/payment/**").authenticated()
                 
                 .anyRequest().authenticated()
             )
