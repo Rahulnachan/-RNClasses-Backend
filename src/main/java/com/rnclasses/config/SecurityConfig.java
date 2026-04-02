@@ -91,7 +91,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/demo/**").permitAll()
                 .requestMatchers("/api/trainer/all").permitAll()
                 
-                // 🔥 OAuth2 endpoints - make them public
+                // OAuth2 endpoints - make them public
                 .requestMatchers("/oauth2/**").permitAll()
                 .requestMatchers("/login/oauth2/**").permitAll()
                 
@@ -101,25 +101,14 @@ public class SecurityConfig {
                 // Trainer endpoints - require TRAINER role
                 .requestMatchers("/api/trainer/**").hasRole("TRAINER")
                 
-                // Student endpoints - require STUDENT role
-               // .requestMatchers("/api/student/**").hasRole("STUDENT")
-                
-                // Authenticated endpoints
-               // .requestMatchers("/api/enroll/**").authenticated()
-                //.requestMatchers("/api/user/**").authenticated()
-                //.requestMatchers("/api/profile/**").authenticated()
-                //.requestMatchers("/api/my-courses/**").authenticated()
-                //.requestMatchers("/api/certificate/**").authenticated()
-               // .requestMatchers("/api/video/**").authenticated()
-               // .requestMatchers("/api/payment/**").authenticated()
-                
+                // All other requests require authentication
                 .anyRequest().authenticated()
             )
-            // 🔥 Add OAuth2 login configuration
-            .oauth2Login(oauth2 -> oauth2
-                .defaultSuccessUrl("http://localhost:5173/auth?oauth2=success", true)
-                .failureUrl("http://localhost:5173/auth?oauth2=failed")
-            )
+            // OAuth2 login is DISABLED for now
+            // .oauth2Login(oauth2 -> oauth2
+            //     .defaultSuccessUrl("http://localhost:5173/auth?oauth2=success", true)
+            //     .failureUrl("http://localhost:5173/auth?oauth2=failed")
+            // )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
