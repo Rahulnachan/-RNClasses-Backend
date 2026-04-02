@@ -1,13 +1,13 @@
 # Build stage
-FROM maven:3.9.9-eclipse-temurin-17-focal AS build
+FROM maven:3.9.9-eclipse-temurin-17 AS build
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
 
 # Run stage
-FROM openjdk:17-jdk-alpine3.12
-ARG PORT=8080
+FROM eclipse-temurin:17-jre-alpine
+ARG PORT=8085
 ENV PORT=${PORT}
 COPY --from=build /app/target/*.jar /app/app.jar
-EXPOSE 8080
+EXPOSE 8085
 CMD ["sh", "-c", "java -jar /app/app.jar --server.port=${PORT}"]
