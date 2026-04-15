@@ -10,7 +10,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/otp")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = {
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "https://rn-classes-two.vercel.app",
+    "https://rn-classes-l8l1rp19a-rahul-nachans-projects.vercel.app"
+})
 public class OTPController {
 
     @Autowired
